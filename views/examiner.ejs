@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/head') %>
+<style>
+    .mainContainer {
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding: 20px;
+        background-color: #fff; 
+        border-radius: 8px; 
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<link rel="stylesheet" href="/public/css/styles.css">
+
+<body>
+    <%- include('layouts/nav') %>
+    <div class="backgroundContainer examinerpage">
+        <div class="mainContainer">
+            <h2>Examiner</h2>
+            <main>
+                <div class="filter">
+                    <form id="filterForm" action="/examiner" method="GET">
+                        <h3>Select Driver Test</h3>
+                        <select id="testTypeFilter" name="testType" onchange="document.getElementById('filterForm').submit()">
+                            <option value="">Select to apply filter</option>
+                            <option value="G2" <%= selectedTestType === 'G2' ? 'selected' : '' %>>G2 Test</option>
+                            <option value="G" <%= selectedTestType === 'G' ? 'selected' : '' %>>G Test</option>
+                        </select>
+                    </form>
+                </div>
+                <table id="examinerTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Car Make</th>
+                            <th>Car Model</th>
+                            <th>Car Year</th>
+                            <th>Car Plate No</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (users.length === 0) { %>
+                            <tr>
+                                <td colspan="6">No users found</td>
+                            </tr>
+                        <% } else { %>
+                            <% users.forEach(user => { %>
+                                <tr>
+                                    <td><%= user.Username %></td>
+                                    <td><%= user.car_details.make %></td>
+                                    <td><%= user.car_details.model %></td>
+                                    <td><%= user.car_details.year %></td>
+                                    <td><%= user.car_details.plateNumber %></td>
+                                    <td>
+                                        <form action="/examiner/<%= user._id %>" method="POST">
+                                            <input type="text" name="comment" placeholder="Add Comment" value="<%= user.comment %>">
+                                            <select name="pass">
+                                                <option value="true" <%= user.pass === 'true' ? 'selected' : '' %>>Pass</option>
+                                                <option value="false" <%= user.pass === 'false' ? 'selected' : '' %>>Fail</option>
+                                            </select>
+                                            <button type="submit">Submit</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+    <% if (locals.alertMessage) { %>
+        alert("<%= locals.alertMessage %>");
+        <% req.session.alertMessage = null; %>
+    <% } %>
+</body>
+<%- include('layouts/footer') %>
+</html>

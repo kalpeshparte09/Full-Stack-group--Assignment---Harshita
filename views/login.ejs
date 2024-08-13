@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head starts-->
+<%- include('layouts/head') %>
+<!-- Head ends-->
+
+<body>
+    <!-- Navigation starts-->
+    <%- include('layouts/nav') %>
+    <!-- Navigation ends-->
+
+    <div class="backgroundContainer loginpage">
+        <div class="mainContainer">
+            <h2>Login</h2>
+            <% if (locals.error) { %>
+                <div class="error"><%= locals.error %></div>
+            <% } %>
+            <form action="/login" method="post">
+                <div class="form_group">
+                    <label for="userName">User Name:</label>
+                    <input type="text" name="userName" >
+                </div>
+                <div class="form_group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" >
+                </div>
+                <button type="submit">Login</button>
+                <br>
+            </form>
+        </div>
+    </div>
+</body>
+<!-- Footer starts-->
+<%- include('layouts/footer') %>
+<!-- Footer ends-->
+
+</html>

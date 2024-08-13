@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('layouts/head') %>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <style>
+        .available {
+            background-color: white;
+        }
+        .unavailable {
+            background-color: brown;
+            color: white;
+        }
+        #times {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px; 
+        }
+        .time-slot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+        }
+        .time-slot input {
+            margin-right: -1px;
+        }
+        .time-slot label {
+            margin: 0;
+        }
+    </style>
+    <script>
+        function loadTimes() {
+            const date = document.getElementById('date').value;
+            if (date) {
+                window.location.href = `/appointment?date=${date}`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <%- include('layouts/nav') %>
+    
+    <div class="backgroundContainer appointmentpage">
+        <div class="mainContainer">
+            <form action="/appointment" method="POST">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" value="<%= selectedDate %>" onchange="loadTimes()" required>
+                <label for="times">Times:</label>
+                <div id="times">
+                    <% 
+                        const timeSlots = [
+                            " 09:00-09:30", " 09:30-10:00", " 10:00-10:30", " 10:30-11:00", " 11:00-11:30",
+                            " 11:30-12:00", " 12:00-12:30", " 12:30-01:00", " 01:00-01:30", " 01:30-02:00",
+                            " 02:00-02:30", " 02:30-03:00", " 03:00-03:30", " 03:30-04:00"
+                        ];
+                        timeSlots.forEach(slot => { 
+                            const isAvailable = existingTimes.includes(slot) ? 'unavailable' : 'available';
+                    %>
+                        <div class="time-slot <%= isAvailable %>">
+                            <input 
+                                type="checkbox" 
+                                name="time" 
+                                value="<%= slot %>" 
+                                class="<%= isAvailable %>"
+                                <%= isAvailable === 'unavailable' ? 'disabled' : '' %>
+                            >
+                            <label class="<%= isAvailable %>"><%= slot %></label>
+                        </div>
+                    <% }); %>
+                </div>
+                <br/>
+                <button type="submit">Create Appointments</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('layouts/footer') %>
+    <% if (typeof message !== 'undefined' && message) { %>
+        <script>
+            alert('<%= message %>');
+        </script>
+    <% } %>
+</body>
+</html>

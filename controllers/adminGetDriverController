@@ -1,0 +1,33 @@
+const User = require('../models/user');
+
+exports.getCandidates = async (req, res) => {
+    const { FirstName = '', status = '', message = '' } = req.query;
+
+    try {
+        // Build query based on filter parameters
+        const query = { UserType: 'Driver' };
+
+        // Add filter for FirstName
+        if (FirstName) {
+            query.Username = new RegExp(FirstName, 'i');
+        }
+
+        // Add filter for status
+        if (status === 'true') {
+            query.pass = 'Yes'; 
+        }
+        if (status === 'false') {
+            query.pass = 'No'; 
+        }
+
+        // Fetch filtered users
+        const users = await User.find(query);
+
+        // Render view with filtered data and message
+        res.render('candidates', { users, filter: { FirstName, status }, message });
+    } catch (err) {
+        console.error('Error fetching candidates:', err);
+        // Pass the error message to the view
+        res.render('candidates', { users: [], filter: { FirstName, status }, message: 'An error occurred while fetching candidates.' });
+    }
+};

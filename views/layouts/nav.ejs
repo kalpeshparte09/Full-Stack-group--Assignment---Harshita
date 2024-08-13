@@ -1,0 +1,24 @@
+<nav class="navbar">
+    <div class="L_Navbar">
+        <span class="navbar-title">DriveTestBooking Kiosk</span>
+    </div>
+    <div class="R_Navbar">
+        <% if (loggedIn) { %>
+            <a href="/dashboard">Dashboard</a>
+            <% if (userType === 'Driver') { %>
+                <a href="/g2">G2 Test</a>
+                <a href="/g">G Test</a>
+            <% } else if (userType === 'Admin') { %>
+                <a href="/appointment">Appointments</a>
+                <a href="/candidates">Drivers</a>
+            <% } else if (userType === 'Examiner') { %>
+                <a href="/examiner">Examiner</a>
+            <% } %>
+            <a href="/logout">Logout</a>
+        <% } else { %>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+        <% } %>
+    </div>
+</nav>

@@ -1,0 +1,40 @@
+const User = require('../models/user');
+const bcrypt = require('bcrypt');
+
+module.exports = async (req, res) => {
+    try {
+        const { userName, password } = req.body;
+
+        if (!userName && !password) {
+            res.locals.error = "Please enter username and password.";
+            return res.render('login');
+        }
+        else if (!userName) {
+            res.locals.error = "Please enter username.";
+            return res.render('login');
+        }
+        else if (!password) {
+            res.locals.error = "Please enter password.";
+            return res.render('login');
+        }
+
+        const user = await User.findOne({ Username: userName });
+
+        if (user) {
+            const isPasswordValid = await bcrypt.compare(password, user.Password);
+
+            if (isPasswordValid) {
+                req.session.userId = user._id;
+                return res.redirect('/dashboard');
+            } else {
+                res.locals.error = "Invalid username or password.try again.";
+                return res.render('login');
+            }
+        } else {
+            res.locals.error = "Username not found! Please sign up.";
+            return res.render('login');
+        }
+    } catch (error) {
+        return res.status(500).send('Server Error');
+    }
+};

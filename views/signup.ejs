@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/head') %>
+<body>
+    <!-- Navigation starts-->
+    <%- include('layouts/nav') %>
+    <!-- Navigation ends-->
+
+    <div class="backgroundContainer signuppage">
+        <div class="mainContainer">
+            <h2>Sign up</h2>
+            <% if (locals.error) { %>
+                <div class="error"><%= locals.error %></div>
+            <% } %>
+            <% if (locals.success) { %>
+                <div class="success"><%= locals.success %></div>
+                <script>
+                    setTimeout(function() {
+                        window.location.href = '/login'; 
+                    }, 2000);
+                </script>
+            <% } %>
+            <form action="/signup" method="POST">
+                <div class="form_group">
+                    <label for="userName">User Name:</label>
+                    <input type="text" name="userName" >
+                </div>
+                <div class="form_group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" >
+                </div>
+                <div class="form_group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" name="confirmPassword" >
+                </div>
+                <div class="form_group">
+                    <label for="userType">User Type:</label>
+                    <select name="userType" >
+                        <option value="">Select User Type</option>
+                        <option value="Driver">Driver</option>
+                        <option value="Examiner">Examiner</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer starts-->
+    <%- include('layouts/footer') %>
+    <!-- Footer ends-->
+
+    <% if (typeof error !== 'undefined' && error) { %>
+        <script>
+            alert('<%= error %>');
+        </script>
+    <% } %>
+    <% if (typeof success !== 'undefined' && success) { %>
+        <script>
+            alert('<%= success %>');
+        </script>
+    <% } %>
+</body>
+</html>

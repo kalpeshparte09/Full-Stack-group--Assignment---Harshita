@@ -1,0 +1,509 @@
+/* Define primary and secondary colors */
+:root {
+    --primary-color: #6c757d; /* Primary color (gray) */
+    --secondary-color: #5783db; /* Secondary color (dark gray) */
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.error{
+    color: red;
+}
+.message{
+    color: green;
+}
+
+.mainContainer {
+    background-color: #fff;
+    padding: 2.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 40em;
+    width: 100%;
+    margin: 5em 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+h2 {
+    text-align: center;
+    margin: 0 0 1em 0;
+    color:cadetblue; /* Secondary color for heading */
+}
+
+.section {
+    margin-bottom: 1.5em;
+}
+
+label {
+    display: block;
+    width: 12em;
+    margin-bottom: 0.5em;
+    color: var(--primary-color); /* Primary color for labels */
+}
+.form_group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="password"] ,
+select{
+    width: calc(100% - 1.2em);
+    padding: 0.7em;
+    margin-bottom: 0.7em;
+    border: 1px solid var(--primary-color); /* Use primary color for input borders */
+    border-radius: 4px;
+}
+
+
+button {
+    display: block;
+    width: 30%;
+    padding: 0.7em;
+    background-color: cadetblue; /* Use secondary color for button background */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 auto;
+}
+
+button:hover {
+    background-color: cadetblue; /* lighten secondary color on hover */
+}
+
+/* Navigation bar properties */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7em 1.2em;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.L_Navbar {
+    flex: 1;
+}
+
+.navbar-title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.R_Navbar {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.4em;
+}
+
+.R_Navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.R_Navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation bar properties ends */
+
+/* Dashboard properties */
+.back-info {
+   background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url("../imgs/dashboard.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+   color: white;
+   height: 43em;
+   width: 100%;
+   text-align: center;
+   display: flex; 
+   justify-content: center; 
+   align-items: center; 
+}
+
+.back-info h1{
+    font-size: 7em;
+    margin: 0.1em;
+}
+.back-info p{
+    font-size: 1.5em;
+}
+
+.mainContent{
+    display: flex; 
+   justify-content: center; 
+   align-items: center; 
+   flex-direction: column;
+}
+
+
+.mainContent h1{
+    margin: 0.5em;
+    margin-top: 1em;
+    font-size: 3em;
+}
+
+.mainContent h3{
+    margin: 0.5em;
+    font-size: 1.3em;
+}
+
+.mainContent p{
+    margin: 0.5em;
+    margin-bottom: 1.5em;
+}
+
+.center{
+    justify-content: center;
+}
+
+.message{
+    color: cadetblue;
+    font-size: 1.2em;
+    text-align: center;
+    width: auto;
+}
+/* Dashboard properties end */
+
+.backgroundContainer{
+
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+
+/* background for g2 test page */
+.g2page{
+    min-height: 48em;
+    background-image: url("../imgs/g2page_background.jpg");
+}
+
+
+
+/* background for g test page */
+.gpage {
+    position: relative; 
+    min-height: 48em;
+    overflow: hidden; 
+}
+
+.gpage::before {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../imgs/gpage-background.jpg"); 
+    background-size: cover; 
+    background-position: center; 
+    filter: blur(2px); 
+    z-index: -1; 
+}
+
+.gpage > * {
+    position: relative; 
+}
+
+.gpage .content {
+    position: relative; 
+    z-index: 1; 
+}
+
+/* Gradient overlay */
+.gpage::after {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)); 
+    z-index: 0; 
+}
+
+
+/* background for login page */
+.loginpage {
+    position: relative; 
+    min-height: 48em;
+    overflow: hidden;
+}
+
+.loginpage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../imgs/login-background.jpg"); 
+    background-size: cover; 
+    background-position: center; 
+    filter: blur(2px);
+    z-index: -1;
+}
+
+.loginpage > * {
+    position: relative; 
+    z-index: 1; 
+}
+
+.signuppage {
+    position: relative; 
+    min-height: 48em;
+    overflow: hidden;
+}
+
+.signuppage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../imgs/dashboard.jpg");
+    background-size: cover; 
+    background-position: center;
+    filter: blur(2px); 
+    z-index: -1; 
+}
+
+.signuppage > * {
+    position: relative; 
+}
+
+.examinerpage {
+    position: relative;
+    min-height: 48em;
+    overflow: hidden;
+}
+
+.examinerpage::before {
+    content: ""; 
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../imgs/dashboard.jpg"); 
+    background-size: cover; 
+    background-position: center;
+    filter: blur(2px); 
+    z-index: -1; 
+}
+
+.examinerpage > * {
+    position: relative;
+}
+
+.candidatepage {
+    position: relative; 
+    min-height: 48em;
+    overflow: hidden; 
+}
+
+.candidatepage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../imgs/dashboard.jpg"); 
+    background-size: cover; 
+    background-position: center; 
+    filter: blur(2px);
+    z-index: -1; 
+}
+
+.candidatepage > * {
+    position: relative; 
+}
+
+.appointmentpage {
+    position: relative; 
+    min-height: 48em;
+    overflow: hidden; 
+}
+
+.appointmentpage::before {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../imgs/dashboard.jpg"); 
+    background-size: cover; 
+    background-position: center; 
+    filter: blur(2px); 
+    z-index: -1; 
+}
+
+.appointmentpage > * {
+    position: relative; 
+}
+
+.notfoundpage {
+    position: relative; 
+    min-height: 48em;
+    overflow: hidden; 
+}
+
+.notfoundpage::before {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../imgs/dashboard.jpg");
+    background-size: cover; 
+    background-position: center; 
+    filter: blur(2px); 
+    z-index: -1;
+}
+
+.notfoundpage > * {
+    position: relative; 
+}
+
+
+
+/* Footer properties */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 0.2em 0;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Footer properties end */
+
+
+#examinerTable {
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 20px; 
+    border: 1px solid #ddd; 
+}
+
+#examinerTable th, #examinerTable td {
+    padding: 10px; 
+    text-align: left; 
+    border-bottom: 1px solid #ddd; 
+    border-right: 1px solid #ddd;
+}
+
+#examinerTable th {
+    background-color: #f4f4f4;
+    font-weight: bold; 
+    border-top: 1px solid #ddd;
+}
+
+#examinerTable td:first-child, #examinerTable th:first-child {
+    border-left: 1px solid #ddd; 
+}
+
+#examinerTable tr:last-child td {
+    border-bottom: none; 
+}
+
+#examinerTable tr:hover {
+    background-color: #f9f9f9; 
+}
+
+.filter {
+    margin-bottom: 20px; 
+    width: 40%;
+}
+
+#filterForm select {
+    padding: 8px; 
+    font-size: 16px;
+    border: 1px solid #ddd; 
+    border-radius: 4px;
+    background-color: #fff; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#filterForm button {
+    padding: 8px 16px; 
+    background-color: cadetblue; 
+    color: #fff;
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#filterForm button:hover {
+    background-color: cadetblue; 
+}
+
+#examinerTable td form {
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+#examinerTable td input[type="text"] {
+    padding: 8px; 
+    font-size: 14px; 
+    border: 1px solid #ddd;
+    border-radius: 4px; 
+    flex: 2; 
+}
+
+#examinerTable td select {
+    padding: 8px; 
+    font-size: 14px; 
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+    flex: 1; 
+}
+
+#examinerTable td button {
+    padding: 8px 12px;
+    font-size: 14px; 
+    background-color: cadetblue; 
+    color: #fff; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    flex: 0;
+}
+
+#examinerTable td button:hover {
+    background-color:cadetblue; 
+}

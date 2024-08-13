@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/head') %>
+<style>
+    .mainContainer {
+        max-width: 850px; 
+        margin: 0 auto; 
+        padding: 20px;
+        background-color: #fff; 
+        border-radius: 8px; 
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    }
+
+    #filterForm {
+        margin-bottom: 20px;
+    }
+
+    #filterForm .filter {
+        display: flex; 
+        gap: 15px; 
+        flex-wrap: wrap; 
+    }
+
+    #filterForm label {
+        margin-right: 10px; 
+    }
+
+    #filterForm input[type="text"], #filterForm select {
+        padding: 8px; 
+        font-size: 16px; 
+        border: 1px solid #ddd; 
+        border-radius: 4px; 
+        background-color: #fff; 
+    }
+
+    #filterForm button {
+        padding: 8px 16px; 
+        background-color: #007bff; 
+        color: #fff; 
+        border: none; 
+        border-radius: 4px;
+        cursor: pointer; 
+        font-size: 16px; 
+    }
+
+    #filterForm button:hover {
+        background-color: #0056b3;
+    }
+
+    table {
+        width: 100%; 
+        border-collapse: collapse;
+        margin-top: 20px; 
+        border: 1px solid #ddd; 
+    }
+
+    table th, table td {
+        padding: 10px; 
+        text-align: left; 
+        border-bottom: 1px solid #ddd; 
+        border-right: 1px solid #ddd; 
+    }
+
+    table th {
+        background-color: #f4f4f4; 
+        font-weight: bold; 
+        border-top: 1px solid #ddd; 
+    }
+
+    table td:first-child, table th:first-child {
+        border-left: 1px solid #ddd; 
+    }
+
+    table tr:last-child td {
+        border-bottom: none; 
+    }
+
+    table tr:hover {
+        background-color: #f9f9f9; 
+    }
+</style>
+<body>
+    <!-- Navigation starts-->
+    <%- include('layouts/nav') %>
+    <!-- Navigation ends-->
+
+    <div class="backgroundContainer candidatepage">
+        <div class="mainContainer">
+            <h2>Pass/Fail Candidates</h2>
+            
+            <!-- Filter Form -->
+            <form id="filterForm" action="/candidates" method="GET">
+                <div class="filter">
+                    <label for="name">Name:</label>
+                    <input type="text" id="firstName" name="FirstName" value="<%= filter.FirstName %>">
+                    
+                    <label for="status">Status:</label>
+                    <select id="status" name="status">
+                        <option value="">Select Status</option>
+                        <option value="true" <%= filter.status === 'true' ? 'selected' : '' %>>Pass</option>
+                        <option value="false" <%= filter.status === 'false' ? 'selected' : '' %>>Fail</option>
+                    </select>
+                    
+                    <button type="submit">Apply Filter</button>
+                </div>
+            </form>
+
+            <!-- Candidates Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Comment</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <td><%= user.Username %></td>
+                            <td><%= user.comment %></td>
+                            <td><%= user.pass && user.pass.trim() !== '' ? (user.pass === 'Yes' ? 'Pass' : 'Fail'):''%></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <% if (message) { %>
+        alert('<%= message %>');
+    <% } %>
+
+</body>
+<%- include('layouts/footer') %>
+</html>
